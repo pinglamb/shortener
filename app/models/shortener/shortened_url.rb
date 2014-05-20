@@ -19,6 +19,7 @@ class Shortener::ShortenedUrl < ActiveRecord::Base
   # link to a user if one specified
   # throw an exception if anything goes wrong
   def self.generate!(orig_url, owner=nil, unique_key = nil)
+    unique_key = unique_key.parameterize
     # if we get a shortened_url object with a different owner, generate
     # new one for the new owner. Otherwise return same object
     if orig_url.is_a?(Shortener::ShortenedUrl)
