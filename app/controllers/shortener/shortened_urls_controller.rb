@@ -3,7 +3,7 @@ class Shortener::ShortenedUrlsController < ActionController::Base
   # find the real link for the shortened link key and redirect
   def show
     # only use the leading valid characters
-    token = /^([#{Shortener.key_chars.join}]*).*/.match(params[:id])[1]
+    token = /^([#{Shortener.key_chars.join}\-]*).*/.match(params[:id])[1]
 
     # pull the link out of the db
     sl = ::Shortener::ShortenedUrl.find_by_unique_key(token)
